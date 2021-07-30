@@ -1,5 +1,6 @@
 
 let [mill, sec, min, hour] = [0, 0, 0, 0];
+let stopwatch = document.getElementsByClassName("stopwatch")[0];
 let time ;
 
 document.getElementById("start").addEventListener('click' , () => {
@@ -7,7 +8,7 @@ document.getElementById("start").addEventListener('click' , () => {
 });
 
 function startStopwatch() {
-    let stopwatch = document.getElementsByClassName("stopwatch")[0];
+    
     mill += 1;
     if (mill == 100) {
         mill = 0;
@@ -32,4 +33,22 @@ function startStopwatch() {
 
 document.getElementById("stop").addEventListener("click" , () => {
     clearInterval(time);
+});
+
+document.getElementById("restart").addEventListener("click" , () => {
+    clearInterval(time);
+    [mill, sec, min, hour] = [0, 0, 0, 0];
+    stopwatch.innerHTML = "00 : 00 : 00 : 00";
+});
+
+document.getElementById("save").addEventListener("click" , () => {
+    clearInterval(time);
+    localStorage.setItem("time" , stopwatch.innerHTML);
+    [mill, sec, min, hour] = [0, 0, 0, 0];
+    stopwatch.innerHTML = "00 : 00 : 00 : 00";
+});
+
+document.getElementById("load").addEventListener("click" , () => {
+    let lastTime = localStorage.getItem("time");
+    stopwatch.innerHTML = lastTime;
 });
