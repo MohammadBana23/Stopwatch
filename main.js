@@ -2,9 +2,17 @@
 let [mill, sec, min, hour] = [0, 0, 0, 0];
 let stopwatch = document.getElementsByClassName("stopwatch")[0];
 let time ;
+let counter = 0 ;
 
 document.getElementById("start").addEventListener('click' , () => {
-    time = setInterval(startStopwatch , 10);
+    
+    counter++;
+
+    if(counter % 2 == 0){
+        clearInterval(time);
+    }else{
+        time = setInterval(startStopwatch , 10);
+    }
 });
 
 function startStopwatch() {
@@ -22,7 +30,6 @@ function startStopwatch() {
             }
         }
     }
-
     let h = hour < 10 ? "0" + hour : hour; 
     let m = min < 10 ? "0" + min : min; 
     let s = sec < 10 ? "0" + sec : sec; 
@@ -44,7 +51,6 @@ document.getElementById("restart").addEventListener("click" , () => {
 document.getElementById("save").addEventListener("click" , () => {
     clearInterval(time);
     localStorage.setItem("time" , stopwatch.innerHTML);
-    [mill, sec, min, hour] = [0, 0, 0, 0];
     stopwatch.innerHTML = "00 : 00 : 00 : 00";
 });
 
