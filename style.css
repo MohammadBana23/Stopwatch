@@ -30,6 +30,7 @@ body {
     justify-content: center;
     text-align: center;
     position: relative;
+    font-weight: bold;
     background: rgba(138, 43, 236, 1);
     text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
     box-shadow: 10px 10px 5px rgb(64, 36, 87);
